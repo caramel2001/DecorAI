@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from PIL import Image
+from backend.generation import run_replicate, controlled_generation
 
 
 def display_image():
@@ -24,5 +25,40 @@ def display_image():
         st.write("Image Uploaded Successfully!")
 
 
+def empty_room():
+    st.subheader("Add furniture to Empty Room")
+    pass
+
+
+def replace_all():
+    st.subheader("Replace All Exisitng Furniture")
+    pass
+
+
+def replace_particular():
+    st.subheader("Replace a Particular Furniture")
+    pass
+
+
+def main():
+    st.title("AI Interior Decorator")
+    # select box
+    option = st.sidebar.selectbox(
+        "How would you like to generate",
+        [
+            "Add furniture to Empty Room",
+            "Replace All Exisitng Furniture",
+            "Replace a Particular Furniture",
+        ],
+    )
+    if option == "Add furniture to Empty Room":
+        empty_room()
+    elif option == "Replace All Exisitng Furniture":
+        replace_all()
+    elif option == "Replace a Particular Furniture":
+        replace_particular()
+
+
 if __name__ == "__main__":
-    display_image()
+
+    main()
