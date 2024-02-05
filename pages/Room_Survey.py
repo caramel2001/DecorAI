@@ -1,4 +1,5 @@
 import streamlit as st
+import json
 
 # make layout wide
 st.set_page_config(layout="wide")
@@ -26,21 +27,22 @@ def survey():
         col1, col2, col3, col4 = st.columns(4)
 
         with col1:
-            st.image("images/pastel.png", caption="Classic")
-            pastel = st.checkbox("Pastel", key="1")
 
+            st.image("images/pastel.png", caption="Pastel")
+            pastel = st.checkbox('Pastel', key='1')
+        
         with col2:
-            st.image("images/tech.png", caption="Modern")
-            tech_savy = st.checkbox("Tech and Savy", key="2")
-
+            st.image("images/tech.png", caption="Tech and Savy")
+            tech_savy = st.checkbox('Tech and Savy', key='2')
+        
         with col3:
-            st.image("images/retro_inspired.png", caption="Vintage")
-            retro = st.checkbox("Retro", key="3")
-
+            st.image("images/retro_inspired.png", caption="Retro")
+            retro = st.checkbox('Retro', key='3')
+        
         with col4:
-            st.image("images/modern.png", caption="Minimalist")
-            modern = st.checkbox("Modern", key="4")
-
+            st.image("images/modern.png", caption="Modern")
+            modern = st.checkbox('Modern', key='4')
+        
         # Determine room theme based on checkboxes
         if pastel:
             room_theme = "pastel"
@@ -82,20 +84,27 @@ def survey():
         )
 
         # Submit button for the form
+
         submit_button = st.form_submit_button(label="Submit Results")
 
+
     if submit_button:
-        # Display user's choices
         if room_theme is not None:
             st.success(f"Preferred Room Theme: {room_theme}")
         else:
             st.error("Please select a room theme.")
 
-        st.success(f"Favorite Wall Color: {wall_color}")
-        st.success(f"Favorite Furniture Types: {', '.join(furniture_types)}")
-        st.success(f"Preferred Flooring Type: {flooring}")
-        st.success(f"Importance of Natural Light: {natural_light}")
-        # ... display other choices
+        
+        data = {
+            'Preferred Room Theme': room_theme,
+            'Favorite Wall Color': wall_color,
+            'Favorite Furniture Types': ', '.join(furniture_types),
+            'Preferred Flooring Type': flooring,
+            'Importance of Natural Light': natural_light
+        }
+        
+        with open('survey_results.json', 'w') as f:
+            json.dump(data, f)
 
 
 if __name__ == "__main__":
