@@ -16,18 +16,18 @@ def load_lottieurl(url):
     return r.json()
 
 lottie_health = load_lottieurl(
-    "https://assets2.lottiefiles.com/packages/lf20_hxart9lz.json"
+    "https://lottie.host/01f57564-e121-4554-be96-1de0e1d50990/4NRuwVVJBs.json"
 )
 lottie_welcome = load_lottieurl(
-    "https://assets6.lottiefiles.com/packages/lf20_ikvz7qhc.json"
+    "https://lottie.host/77be6c69-cc89-4fa8-9e80-e31462ec9fcb/nHLA4yoRzv.json"
 )
 lottie_healthy = load_lottieurl(
-    "https://assets2.lottiefiles.com/packages/lf20_m0ze3ipv.json"
+    "https://lottie.host/2cb5041e-96ab-4ba5-957a-1630808c21b3/vwixiYWwjj.json"
 )
 
-st.title("Welcome to EduAI!")
+st.title("Welcome to DecorAI!")
 st_lottie(lottie_welcome, height=300, key="welcome")
-st.header("Learning made easy")
+st.header("Dreams Home made easy")
 
 
 with st.container():
@@ -37,18 +37,15 @@ with st.container():
         st.write("##")
         st.write(
             """
-            AI-powered summarization tools can help students to quickly understand the key takeaways from lengthy articles, research papers, and other educational materials. These tools can also help educators to quickly scan through a large amount of content and identify the most important information to present to their students. By using AI to summarize educational materials, students can save time and focus on understanding the most important concepts.
-            
-            Our product is designed to help you summarize notes and videos, and generate questions and answers based on the provided text. It utilizes state-of-the-art AI technology to provide accurate and concise summaries, as well as generate questions and answers that help you better understand and retain information. Whether you're a student looking to prepare for an exam, or a professional looking to stay on top of the latest industry trends, our product can help you save time and improve your learning experience.
+           Welcome to DecorAI, where the future of room decoration is made simple and intuitive through the power of Artificial Intelligence. Our platform is dedicated to transforming your living spaces into stunning interiors with the assistance of advanced AI technology.
 
+At DecorAI, we believe that everyone deserves a beautiful home. Our AI-powered tools are designed to understand your unique style and space, offering personalized design solutions that fit your life
             """
         )
         st.write("##")
-        st.write(
-            "[Learn More >](https://www.unesco.org/en/digital-education/artificial-intelligence"
-        )
+        
     with right_column:
-        st_lottie(lottie_health, height=500, key="check")
+        st_lottie(lottie_health, height=300, key="check")
 
 with st.container():
     st.write("---")
@@ -56,12 +53,9 @@ with st.container():
     with cols[0]:
         st.header("How it works?")
         """
-Our cutting-edge application is designed to revolutionize the way you learn by simplifying the process of summarizing video lectures and handwritten notes. Whether you're a student, professional, or just someone looking to expand your knowledge, our platform is the perfect solution for you.
-
-All you need to do is provide us with the URL of the video or upload the handwritten notes, and our advanced algorithms will process the information to generate a concise summary. Additionally, our platform can also generate question-answer pairs based on the summary, making it easier for you to grasp the key concepts and retain the information.
-
-With our user-friendly interface, you can quickly access the summary and question-answer pairs on any device, making learning convenient and accessible. Say goodbye to the hassle of manually sifting through hours of lecture material or pages of notes. Let our application do the heavy lifting for you, so you can focus on mastering the material and achieving your learning goals. 
-    
+        Smart AI Designer: Just upload pictures of your room and our AI will analyze the space, lighting, and existing furniture to provide tailored design recommendations. Whether you're revamping a cozy bedroom or a spacious living room, our AI understands your needs.
+        
+        Personalized Style Assessment: Not sure of your style? Our AI will guide you! Complete our interactive quiz, and the AI will suggest decor themes that resonate with your taste, from modern minimalist to bohemian chic    
         """
     with cols[1]:
         st_lottie(lottie_healthy, height=300, key="healthy")
