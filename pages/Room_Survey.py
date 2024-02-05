@@ -83,8 +83,6 @@ def survey():
             5,
         )
 
-        # Submit button for the form
-
         submit_button = st.form_submit_button(label="Submit Results")
 
 
