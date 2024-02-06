@@ -5,11 +5,11 @@ import json
 import io
 from dotenv import load_dotenv
 from PIL import Image
-from dotenv import load_dotenv
 load_dotenv()
 def get_recommendations(image, user_pref):
-    api_key = os.getenv("OPENAI_API_KEY")
-
+    api_key = "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"
+    if not api_key:
+      return None
     if isinstance(image, str):
         image = Image.open(image)
     

@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 from PIL import Image
 import json
-from backend.generation import run_replicate, controlled_generation
+from backend.generation import run_replicate, controlled_generation,non_controlled_generation
 from recommendation import get_recommendations
 
 def display_image():
@@ -68,33 +68,51 @@ def main():
 
     if image and user_pref:
         print('type', type(image))
-
+        new_prompt_btn = st.button("Generate New Prompt")
         # Only generate the prompt if it hasn't been generated yet
-        if not st.session_state.prompt:
+        if not st.session_state.prompt or new_prompt_btn:
             st.session_state.prompt = get_recommendations(image, user_pref)
-        
+        if not st.session_state.prompt:
+          st.error('OPENAI_API_KEY environment variable not present', icon="🚨")
+
         st.text_area("Prompt", st.session_state.prompt)
         btn = st.button("Finalized Prompt Generate output")
-        
+        btn_2 = st.button("Generate A New Sample")
+
         col1, col2 = st.columns(2)
         
         with col1:
             st.image(image, caption="INPUT", use_column_width=True)
         
         with col2:
-            if not btn:
-                st.write("start generating")
-            else:           
-                with st.spinner('Generating the output...'):
-                    # Only generate the output image if it hasn't been generated yet
-                    if not st.session_state.output_image:
-                        st.session_state.output_image = controlled_generation(image, prompt=st.session_state.prompt)
-                    
-                    if st.session_state.output_image:
-                        st.image(st.session_state.output_image, caption="OUTPUT", use_column_width=True)
-                    else:
-                        st.error("Failed to generate the output image.")
-                st.write("Done!")
+            if not btn and not btn_2:
+                st.info("Finalize the prompt to start Generating")
+                if st.session_state.output_image:
+                      st.image(st.session_state.output_image, caption="OUTPUT", use_column_width=True)
+            else: 
+                if  option == "Add furniture to Empty Room":         
+                  with st.spinner('Generating the output...'):
+                      # Only generate the output image if it hasn't been generated yet
+                      if not st.session_state.output_image or btn_2:
+                          st.session_state.output_image = non_controlled_generation(image, prompt=st.session_state.prompt)
+                      
+                      if st.session_state.output_image:
+                          st.image(st.session_state.output_image, caption="OUTPUT", use_column_width=True)
+                      else:
+                          st.error("Failed to generate the output image.")
+                elif option == "Replace All Existing Furniture":
+                  
+                  with st.spinner('Generating the output...'):
+                      # Only generate the output image if it hasn't been generated yet
+                      if not st.session_state.output_image or btn_2:
+                          st.session_state.output_image = controlled_generation(image, prompt=st.session_state.prompt)
+                      
+                      if st.session_state.output_image:
+                          st.image(st.session_state.output_image, caption="OUTPUT", use_column_width=True)
+                      else:
+                          st.error("Failed to generate the output image.")
+
+                st.success("Design Generated!")
 
 
 if __name__ == "__main__":
