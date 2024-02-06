@@ -29,3 +29,6 @@ Incorporate User Feedback: Continuously refine the system based on user experien
 Expand the Database: Include a wider range of furniture and decor items to cater to diverse tastes and styles.
 Enhance Customization: Introduce more advanced features for personalized decor suggestions, such as mood-based themes or event-specific decorations
 Partnerships and Integration: Collaborate with furniture and decor retailers to offer users the option to purchase recommended items directly through the app.
+
+
+
